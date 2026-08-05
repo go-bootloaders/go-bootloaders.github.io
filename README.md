@@ -6,9 +6,11 @@ Sources for **go-bootloaders.github.io** — the go-bootloaders landing page.
 Built with [Hugo](https://gohugo.io), same single inline-CSS template shape as the
 sibling family landings (go-compressions, go-onigmo, …).
 
-go-bootloaders is **early-stage**: no library has shipped yet, so the page is an
-honest roadmap of the boot stacks we mean to reimplement in pure Go — not a wall
-of repo cards for code that does not exist.
+go-bootloaders has shipped two real, tested targets — `grub` and `systemd-boot`,
+both in production use (consumed by `go-diskimages/diskimage`) — with four more
+still on the roadmap. The page is an honest accounting of which is which:
+"shipped" cards link to real code, "planned" cards are direction, not
+capability.
 
 ## Layout
 

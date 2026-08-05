@@ -5,15 +5,21 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [markup.goldmark.renderer]
   unsafe = true
 
-# go-bootloaders is early-stage: no library has shipped yet. The landing is
-# honest about that — a roadmap of the boot stacks we mean to reimplement in
-# pure Go, not a wall of repo cards for code that does not exist. Each phase
-# names a real upstream bootloader and the status of its pure-Go counterpart.
+# Two targets (grub, systemd-boot) have shipped as real, tested Go modules —
+# see their own repos for the full API. The rest of this roadmap of the boot
+# stacks we mean to reimplement in pure Go is still honest about what's not
+# built yet. Each phase names a real upstream bootloader and the status of
+# its pure-Go counterpart.
 [[params.roadmap]]
   name = "grub"
   upstream = "GNU GRUB"
-  status = "scaffolding"
-  blurb = "Multiboot/Multiboot2 loader and menu. First target — repository scaffolded, no functional code yet."
+  status = "shipped"
+  blurb = "GRUB administration toolkit: opens a GPT disk image, mounts the ESP and a Linux /boot (ext4/btrfs) read-write, reads/generates/patches grub.cfg, registers a UEFI boot entry, and optionally measures boot into TPM PCRs. 93.9% test coverage; no tagged release yet."
+[[params.roadmap]]
+  name = "systemd-boot"
+  upstream = "systemd-boot (sd-boot)"
+  status = "shipped"
+  blurb = "Boot Loader Specification reader: GPT-locates the ESP, parses loader.conf + BLS entries, reads/writes UEFI BootOrder/BootNext, and measures the selected kernel/initrd/cmdline into TPM PCRs. 92.9% test coverage; no tagged release yet."
 [[params.roadmap]]
   name = "limine"
   upstream = "Limine"
@@ -29,11 +35,6 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   upstream = "rEFInd"
   status = "planned"
   blurb = "Graphical UEFI boot manager that auto-discovers EFI boot loaders."
-[[params.roadmap]]
-  name = "systemd"
-  upstream = "systemd-boot (sd-boot)"
-  status = "planned"
-  blurb = "Simple UEFI boot manager with Boot Loader Specification entries."
 [[params.roadmap]]
   name = "u-boot"
   upstream = "Das U-Boot"
