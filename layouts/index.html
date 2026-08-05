@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ .Site.Title }} — pure-Go bootloaders</title>
-<meta name="description" content="go-bootloaders — an early-stage effort to reimplement classic boot stacks (GRUB, Limine, Syslinux, rEFInd, systemd-boot, U-Boot) in pure Go. CGO_ENABLED=0. Roadmap, not a release.">
+<meta name="description" content="go-bootloaders — pure-Go bootloader tooling. GRUB and systemd-boot have shipped as production consumers of the storage/firmware/TPM stack; Limine, Syslinux, rEFInd, and U-Boot remain on the roadmap. CGO_ENABLED=0.">
 <style>
   :root {
     --bg: #ffffff; --fg: #1b1f24; --muted: #57606a; --card: #f6f8fa;
-    --border: #d0d7de; --accent: #0079a8; --accent-fg: #ffffff;
+    --border: #d0d7de; --accent: #0079a8; --accent-fg: #ffffff; --success: #1a7f37;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme]) {
       --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #161b22;
-      --border: #30363d; --accent: #22cce2; --accent-fg: #0d1117;
+      --border: #30363d; --accent: #22cce2; --accent-fg: #0d1117; --success: #3fb950;
     }
   }
   /* Forced dark (manual toggle). */
   :root[data-theme="dark"] {
       --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1; --card: #161b22;
-      --border: #30363d; --accent: #22cce2; --accent-fg: #0d1117;
+      --border: #30363d; --accent: #22cce2; --accent-fg: #0d1117; --success: #3fb950;
   }
   .theme-toggle {
     position: fixed; top: 14px; right: 14px; z-index: 10;
@@ -58,6 +58,7 @@
   .card .accel { color: var(--muted); font-size: .85rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; margin: 0 0 .6em; }
   .card p { margin: 0 0 .8em; color: var(--fg); font-size: .95rem; }
   .status { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border); white-space: nowrap; }
+  .status.shipped { color: var(--success); border-color: var(--success); }
   .status.scaffolding { color: var(--accent); border-color: var(--accent); }
   .status.planned { color: var(--muted); }
   .principles { color: var(--muted); text-align: center; padding: 10px 0 0; max-width: 820px; margin: 0 auto; }
@@ -80,23 +81,28 @@
       <strong>U-Boot</strong> &mdash; reimplemented in <strong>pure Go</strong>, with no C toolchain.</p>
     <div class="pills">
       <span class="pill">CGO_ENABLED=0</span>
-      <span class="pill"><strong>early-stage</strong></span>
-      <span class="pill">roadmap, not a release</span>
+      <span class="pill"><strong>2 shipped, 4 planned</strong></span>
+      <span class="pill">no tagged release yet</span>
       <span class="pill">BSD-3-Clause</span>
     </div>
     <div class="cta">
-      <a class="btn primary" href="https://github.com/go-bootloaders">GitHub</a>
-      <a class="btn ghost" href="https://github.com/go-bootloaders/brand">Brand</a>
+      <a class="btn primary" href="https://go-bootloaders.github.io/docs/">Documentation</a>
+      <a class="btn ghost" href="https://github.com/go-bootloaders">GitHub</a>
     </div>
   </header>
 
   <main class="wrap">
-    <p class="lead"><strong>This organisation is just getting started.</strong> The goal is a family of
+    <p class="lead"><strong>Two targets have shipped.</strong> The goal is a family of
       pure-Go, <code>cgo</code>-free reimplementations of well-known bootloaders and boot managers &mdash;
-      readable, testable Go in place of the usual C and assembly. <strong>No library has shipped yet</strong>:
-      the page below is a roadmap of intent, and the status badges are honest about where each target stands.</p>
+      readable, testable Go in place of the usual C and assembly.
+      <a href="https://github.com/go-bootloaders/grub"><code>grub</code></a> and
+      <a href="https://github.com/go-bootloaders/systemd-boot"><code>systemd-boot</code></a> are real,
+      tested modules in production use (both consumed by
+      <a href="https://github.com/go-diskimages/diskimage"><code>go-diskimages/diskimage</code></a>) —
+      neither has cut a tagged release yet. The remaining four targets below are still a roadmap of
+      intent, and the status badges are honest about where each one stands.</p>
 
-    <h2 class="section">Roadmap</h2>
+    <h2 class="section">Targets</h2>
     <section class="grid">
       {{ range .Site.Params.roadmap }}
       <article class="card">
@@ -110,10 +116,11 @@
       {{ end }}
     </section>
 
-    <p class="principles">Every module will be pure Go with <code>CGO_ENABLED=0</code> and held to the same
-      engineering bar as its sibling organisations: tested, honest about what works, and BSD-3-Clause throughout.
-      Until code lands, treat the cards above as direction rather than capability. The
-      <a href="https://github.com/go-bootloaders/brand">brand</a> repo holds the org's logos.</p>
+    <p class="principles">Every module is (or will be) pure Go with <code>CGO_ENABLED=0</code> and held to
+      the same engineering bar as its sibling organisations: tested, honest about what works, and
+      BSD-3-Clause throughout. For the four <em>planned</em> targets, treat the cards above as direction
+      rather than capability. The <a href="https://github.com/go-bootloaders/brand">brand</a> repo holds
+      the org's logos.</p>
   </main>
 
   <footer class="wrap">
