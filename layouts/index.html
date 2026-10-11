@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{/* Dark Reader repaints pages that already draw their own dark theme, as this one does: ask it to stand aside. */}}
+<meta name="darkreader-lock">
 <title>{{ .Site.Title }} — pure-Go bootloaders</title>
 <meta name="description" content="go-bootloaders — pure-Go bootloader tooling. GRUB and systemd-boot have shipped as production consumers of the storage/firmware/TPM stack; Limine, Syslinux, rEFInd, and U-Boot remain on the roadmap. CGO_ENABLED=0.">
 <style>
