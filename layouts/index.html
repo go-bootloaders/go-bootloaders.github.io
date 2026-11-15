@@ -40,12 +40,10 @@
       <h1 class="head">go-bootloaders</h1>
       <p class="sub">Classic boot stacks &mdash; <strong>GRUB</strong>, <strong>Limine</strong>,
       <strong>Syslinux</strong>, <strong>rEFInd</strong>, <strong>systemd-boot</strong>,
-      <strong>U-Boot</strong> &mdash; reimplemented in <strong>pure Go</strong>, with no C toolchain.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://go-bootloaders.github.io/docs/">{{ partial "icons/book.html" . }}Documentation</a>
-        <a class="btn btn-ghost" href="https://github.com/go-bootloaders">{{ partial "icons/github.html" . }}GitHub</a>
-      </div>
-      <div class="trust">{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}<span class="pill"><strong>2 shipped, 4 planned</strong></span><span class="pill">no tagged release yet</span>{{ if not (partial "mantra-on.html" $) }}<span class="pill">BSD-3-Clause</span>{{ end }}</div>
+      <strong>U-Boot</strong> &mdash; reimplemented in <strong>{{ if partial "mantra-on.html" . }}Go{{ else }}pure Go{{ end }}</strong>, with no C toolchain.</p>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
+      <div class="trust">{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">CGO_ENABLED=0</span>{{ end }}{{ end }}<span class="pill"><strong>2 shipped, 4 planned</strong></span><span class="pill">no tagged release yet</span>{{ if not (partial "mantra-on.html" $) }}{{ if not (partial "mantra-on.html" $) }}<span class="pill">BSD-3-Clause</span>{{ end }}{{ end }}</div>
     </div>
     {{ partial "hero-carousel.html" . }}
   </div></div>
